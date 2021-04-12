@@ -10700,7 +10700,7 @@ function Publish-InternalModule {
 
             if (Microsoft.PowerShell.Management\Test-Path -Path $manifestPath -PathType Leaf) {
                 $ev = $null
-                $module = Microsoft.PowerShell.Core\Test-ModuleManifest -Path $manifestPath `
+                $module = Test-ModuleManifest -Path $manifestPath `
                     -ErrorVariable ev `
                     -Verbose:$VerbosePreference
                 if ($ev) {
