@@ -29,6 +29,7 @@ The **Add-AzApplicationGatewaySslCertificate** cmdlet adds an SSL certificate to
 PS C:\> $AppGW = Get-AzApplicationGateway -Name "ApplicationGateway01" -ResourceGroupName "ResourceGroup01"
 PS C:\> $password = ConvertTo-SecureString $passwordPlainString -AsPlainText -Force
 PS C:\> $AppGW = Add-AzApplicationGatewaySslCertificate -ApplicationGateway $AppGW -Name "Cert01" -CertificateFile "D:\cert01.pfx" -Password $password
+PS C:\> Set-AzApplicationGateway -ApplicationGateway $appGW
 ```
 
 This command gets an application gateway named ApplicationGateway01 and then adds an SSL certificate named Cert01 to it.
@@ -39,6 +40,7 @@ PS C:\> $AppGW = Get-AzApplicationGateway -Name "ApplicationGateway01" -Resource
 PS C:\> $secret = Get-AzKeyVaultCertificate -VaultName "keyvault01" -Name "sslCert01"
 PS C:\> $secretId = $secret.SecretId.Replace($secret.Version, "") # https://<keyvaultname>.vault.azure.net/secrets/
 PS C:\> $AppGW = Add-AzApplicationGatewaySslCertificate -ApplicationGateway $AppGW -Name "Cert01" -KeyVaultSecretId $secretId
+PS C:\> Set-AzApplicationGateway -ApplicationGateway $appGW
 ```
 
 Get the secret and reference it in the `Add-AzApplicationGatewaySslCertificate` to add it to the Application Gateway with name `Cert01`.
@@ -50,6 +52,7 @@ PS C:\> $AppGW = Get-AzApplicationGateway -Name "ApplicationGateway01" -Resource
 PS C:\> $secret = Get-AzKeyVaultCertificate -VaultName "keyvault01" -Name "sslCert01"
 PS C:\> $secretId = $secret.Id # https://<keyvaultname>.vault.azure.net/secrets/<hash>
 PS C:\> $AppGW = Add-AzApplicationGatewaySslCertificate -ApplicationGateway $AppGW -Name "Cert01" -KeyVaultSecretId $secretId
+PS C:\> Set-AzApplicationGateway -ApplicationGateway $appGW
 ```
 
 Get the secret and reference it in the `Add-AzApplicationGatewaySslCertificate` to add it to the Application Gateway with name `Cert01`.
